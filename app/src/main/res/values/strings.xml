@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SelfJournal</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="navEvents">События</string>
+    <string name="navStatistic">Статистика</string>
+    <string name="navStatisticCommon">Общая</string>
+    <string name="navStatisticExpanded">Расширенная</string>
+    <string name="navExtra">Дополнительно</string>
+    <string name="navSettings">Настройки</string>
+</resources>
