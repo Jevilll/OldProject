@@ -11,4 +11,5 @@
     <string name="navStatisticExpanded">Расширенная</string>
     <string name="navExtra">Дополнительно</string>
     <string name="navSettings">Настройки</string>
+    <string name="navHistory">История</string>
 </resources>

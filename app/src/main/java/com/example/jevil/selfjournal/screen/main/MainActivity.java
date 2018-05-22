@@ -1,8 +1,10 @@
-package com.example.jevil.selfjournal;
+package com.example.jevil.selfjournal.screen.main;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,6 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.jevil.selfjournal.R;
+import com.example.jevil.selfjournal.screen.events.EventsFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,18 +24,17 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
+    FragmentManager fragmentManager = getSupportFragmentManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initialization();
 
 
@@ -58,7 +62,6 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-
         if (id == R.id.action_settings) {
             return true;
         }
@@ -68,24 +71,44 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        Fragment fragment = null;
+        Class fragmentClass = null;
+
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.nav_tasks:
+            case R.id.navEvents:
+                fragmentClass = EventsFragment.class;
+                break;
+            case R.id.navHistory:
 
                 break;
-            case R.id.nav_total:
+            case R.id.navCommon:
 
                 break;
-            case R.id.nav_expanded:
+            case R.id.navExpanded:
 
                 break;
-            case R.id.nav_tools:
+            case R.id.navSettings:
 
                 break;
         }
+
+        try {
+            if (fragmentClass != null) {
+                fragment = (Fragment) fragmentClass.newInstance();
+                fragmentManager
+                        .beginTransaction().replace(R.id.container, fragment).commit();
+                item.setChecked(true);
+                setTitle(item.getTitle());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -94,9 +117,6 @@ public class MainActivity extends AppCompatActivity
     private void initialization() {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        fab.setOnClickListener(view -> {
-
-        });
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
