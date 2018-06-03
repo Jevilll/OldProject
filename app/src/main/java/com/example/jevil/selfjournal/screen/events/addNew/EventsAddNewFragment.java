@@ -1,4 +1,4 @@
-package com.example.jevil.selfjournal.screen.statistic.expanded;
+package com.example.jevil.selfjournal.screen.events.addNew;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,32 +15,39 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-/**
- * Created by Jevil on 22.05.2018.
- */
+public class EventsAddNewFragment extends Fragment{
 
-public class StatisticExpandedFragment extends Fragment implements StatisticExpandedView {
-
-    @BindView(R.id.sExpandedTvText)
+    @BindView(R.id.tvText)
     TextView tvText;
 
     private Unbinder unbinder;
-    private StatisticExpandedPresenter mPresenter;
+    private EventsAddNewPresenter mPresenter;
+
+    public static EventsAddNewFragment newInstance() {
+        return new EventsAddNewFragment();
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = new StatisticExpandedPresenter(this);
+        mPresenter = new EventsAddNewPresenter();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.statistic_expanded_fragment, container, false);
+        View v = inflater.inflate(R.layout.events_add_new_fragment, container, false);
         unbinder = ButterKnife.bind(this, v);
 
-        mPresenter.setText("Statistic expanded fragment");
+
 
         return v;
     }
@@ -50,11 +57,5 @@ public class StatisticExpandedFragment extends Fragment implements StatisticExpa
         super.onDestroyView();
         unbinder.unbind();
     }
-
-    @Override
-    public void setText(String text) {
-        tvText.setText(text);
-    }
-
 
 }

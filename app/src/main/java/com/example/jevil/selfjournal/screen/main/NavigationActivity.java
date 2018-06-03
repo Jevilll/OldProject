@@ -14,12 +14,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.jevil.selfjournal.R;
-import com.example.jevil.selfjournal.screen.events.EventsFragment;
+import com.example.jevil.selfjournal.screen.events.list.EventsListFragment;
+import com.example.jevil.selfjournal.screen.history.HistoryFragment;
+import com.example.jevil.selfjournal.screen.settings.SettingsFragment;
+import com.example.jevil.selfjournal.screen.statistic.common.StatisticCommonFragment;
+import com.example.jevil.selfjournal.screen.statistic.expanded.StatisticExpandedFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity
+public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
@@ -36,8 +40,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initialization();
-
-
 
 
     }
@@ -80,19 +82,19 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.navEvents:
-                fragmentClass = EventsFragment.class;
+                fragmentClass = EventsListFragment.class;
                 break;
             case R.id.navHistory:
-
+                fragmentClass = HistoryFragment.class;
                 break;
             case R.id.navCommon:
-
+                fragmentClass = StatisticCommonFragment.class;
                 break;
             case R.id.navExpanded:
-
+                fragmentClass = StatisticExpandedFragment.class;
                 break;
             case R.id.navSettings:
-
+                fragmentClass = SettingsFragment.class;
                 break;
         }
 
@@ -109,7 +111,6 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -124,5 +125,6 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
     }
 }
