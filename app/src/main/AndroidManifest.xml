@@ -19,6 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".screen.events.addNew.EventsAddNewActivity"
+            android:label="ffffffff"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".screen.events.addNew.EventsAddNewActivity2"></activity>
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.jevil.selfjournal.R;
+import com.example.jevil.selfjournal.screen.events.addNew.EventsAddNewActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +27,8 @@ public class EventsListFragment extends Fragment implements EventsListContract.V
 
     @OnClick(R.id.eventsListFab)
     void onFabClick() {
+
+        EventsAddNewActivity.startActivity(getContext());
 
     }
 
@@ -68,6 +71,8 @@ public class EventsListFragment extends Fragment implements EventsListContract.V
         super.onDestroyView();
         unbinder.unbind();
     }
+
+
 
     @Override
     public void setText(String text) {
